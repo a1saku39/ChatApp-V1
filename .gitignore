@@ -1,0 +1,9 @@
+node_modules/
+uploads/
+data/
+*.log
+connect.html
+connect_public.html
+generate_qr.js
+generate_public_qr.js
+share_internet.js

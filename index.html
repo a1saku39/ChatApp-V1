@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="社員同士でリアルタイムにコミュニケーションできるモダンなチャットアプリケーション">
+    <title>社内チャット - Team Communication Hub</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>ようこそ!</h2>
+            <p>チャットを始めるには、お名前を入力してください</p>
+            <form id="loginForm" class="modal-form">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" name="username" placeholder="山田 太郎" required autocomplete="name"
+                        minlength="2" maxlength="20">
+                </div>
+                <button type="submit" class="submit-button">チャットを開始</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>社内チャット</h1>
+                <div class="user-info">
+                    <a href="https://script.google.com/macros/s/AKfycbyGXf1lEV30290VM1wfZ15wBXHtzEmfaes9oRI_9VUqeQt6sBQb8we0HhukxJcl5iMR-w/exec" target="_blank" class="nav-button"
+                        title="勤怠管理アプリへ">
+                        📋 勤怠管理
+                    </a>
+                    <div class="user-badge">
+                        <span class="user-name" id="currentUserName">ゲスト</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="メッセージを検索..." class="search-input">
+                </div>
+
+                <h2>オンラインユーザー</h2>
+                <div class="online-users" id="onlineUsers">
+                    <!-- Users will be populated by JavaScript -->
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-area">
+                <div class="messages-container" id="messagesContainer">
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-state-icon">💬</div>
+                        <div class="empty-state-text">まだメッセージがありません<br>最初のメッセージを送信してみましょう!</div>
+                    </div>
+                    <!-- Messages will be populated by JavaScript -->
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <form id="messageForm" class="input-form">
+                        <label for="fileInput" class="file-upload-btn" title="ファイルを送信">
+                            📎
+                        </label>
+                        <input type="file" id="fileInput" hidden>
+
+                        <input type="text" id="messageInput" class="message-input" placeholder="メッセージを入力..." required
+                            autocomplete="off" maxlength="500">
+                        <button type="submit" class="send-button">送信</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
