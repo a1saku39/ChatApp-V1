@@ -2,6 +2,7 @@ node_modules/
 uploads/
 data/
 *.log
+cloudflared.exe
 connect.html
 connect_public.html
 generate_qr.js
