@@ -1,21 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Color Palette */
+    /* Color Palette - Light Theme */
     --primary-hue: 250;
     --primary-sat: 85%;
     --primary-light: 60%;
-    /* 見やすさのために少し明るく */
 
-    --bg-primary: hsl(240, 15%, 8%);
-    --bg-secondary: hsl(240, 12%, 12%);
-    --bg-tertiary: hsl(240, 10%, 18%);
-    --bg-glass: hsla(240, 12%, 18%, 0.85);
-    /* 視認性向上のため透明度を下げる */
+    /* 明るい背景色 */
+    --bg-primary: hsl(0, 0%, 98%);
+    /* メイン背景：オフホワイト */
+    --bg-secondary: hsl(240, 20%, 96%);
+    /* サイドバー等：薄い青グレー */
+    --bg-tertiary: hsl(0, 0%, 100%);
+    /* カード・入力欄：白 */
+    --bg-glass: hsla(0, 0%, 100%, 0.9);
+    /* ガラス効果：ほぼ不透明な白 */
 
-    --text-primary: hsl(0, 0%, 98%);
-    --text-secondary: hsl(0, 0%, 80%);
-    --text-tertiary: hsl(0, 0%, 60%);
+    /* テキスト色（濃い色に反転） */
+    --text-primary: hsl(240, 10%, 15%);
+    /* メイン文字：濃いグレー */
+    --text-secondary: hsl(240, 5%, 45%);
+    /* サブ文字 */
+    --text-tertiary: hsl(240, 5%, 65%);
+    /* 薄い文字 */
 
     --accent-primary: hsl(var(--primary-hue), var(--primary-sat), var(--primary-light));
     --accent-secondary: hsl(280, 80%, 65%);
@@ -23,14 +30,15 @@
             hsl(var(--primary-hue), var(--primary-sat), var(--primary-light)),
             hsl(280, 80%, 60%));
 
-    --success: hsl(145, 65%, 50%);
-    --warning: hsl(40, 95%, 55%);
+    --success: hsl(145, 65%, 45%);
+    --warning: hsl(40, 95%, 50%);
     --error: hsl(0, 75%, 60%);
 
-    --border-color: hsla(0, 0%, 100%, 0.15);
-    --shadow-sm: 0 2px 8px hsla(0, 0%, 0%, 0.3);
-    --shadow-md: 0 4px 16px hsla(0, 0%, 0%, 0.4);
-    --shadow-lg: 0 8px 32px hsla(0, 0%, 0%, 0.5);
+    --border-color: hsla(240, 10%, 10%, 0.1);
+    /* ボーダーを目立たなく */
+    --shadow-sm: 0 2px 8px hsla(240, 10%, 10%, 0.05);
+    --shadow-md: 0 4px 16px hsla(240, 10%, 10%, 0.08);
+    --shadow-lg: 0 8px 32px hsla(240, 10%, 10%, 0.1);
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -62,7 +70,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     height: 100vh;
-    /* 高さ固定でスクロール制御 */
 }
 
 /* Container */
@@ -84,6 +91,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 100;
+    box-shadow: var(--shadow-sm);
 }
 
 .header-content {
@@ -126,11 +134,14 @@ body {
     align-items: center;
     gap: var(--space-xs);
     transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
 }
 
 .nav-button:hover {
-    background: var(--bg-glass);
+    background: white;
     border-color: var(--accent-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 /* User Info */
@@ -145,6 +156,14 @@ body {
     align-items: center;
     gap: var(--space-xs);
     font-size: 0.9rem;
+    background: var(--bg-tertiary);
+    /* 追加 */
+    padding: 0.25rem 0.75rem;
+    /* 追加 */
+    border-radius: var(--radius-full);
+    /* 追加 */
+    border: 1px solid var(--border-color);
+    /* 追加 */
 }
 
 .user-badge::before {
@@ -164,7 +183,6 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     display: none;
-    /* デスクトップでは非表示 */
     padding: 0.5rem;
 }
 
@@ -173,7 +191,6 @@ body {
     flex: 1;
     display: flex;
     overflow: hidden;
-    /* スクロールは内部で行う */
     position: relative;
 }
 
@@ -193,6 +210,7 @@ body {
     font-size: 1.1rem;
     color: var(--text-secondary);
     margin-top: var(--space-md);
+    font-weight: 600;
 }
 
 .online-users {
@@ -209,6 +227,8 @@ body {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-sm);
 }
 
 .user-item::before {
@@ -221,7 +241,8 @@ body {
 }
 
 .user-item.current-user {
-    border: 1px solid var(--accent-primary);
+    border-color: var(--accent-primary);
+    background: white;
 }
 
 /* Sidebar Mobile Header */
@@ -263,7 +284,6 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 80%;
-    /* 幅を広げる */
     animation: fadeIn 0.3s ease-out;
 }
 
@@ -309,21 +329,22 @@ body {
 
 .message-content {
     padding: var(--space-md);
-    border-radius: var(--radius-lg);
+    border-radius: 18px;
     font-size: 1rem;
     line-height: 1.5;
     word-break: break-word;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 .message.own .message-content {
     background: var(--accent-gradient);
     color: white;
     border-bottom-right-radius: 4px;
+    box-shadow: var(--shadow-md);
 }
 
 .message.other .message-content {
-    background: var(--bg-tertiary);
+    background: white;
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     border-bottom-left-radius: 4px;
@@ -331,9 +352,11 @@ body {
 
 /* Input Area */
 .input-area {
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     border-top: 1px solid var(--border-color);
     padding: var(--space-md);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    /* 少し影をつけて浮き上がらせる */
 }
 
 .input-form {
@@ -347,39 +370,61 @@ body {
     padding: 0.5rem;
     cursor: pointer;
     color: var(--text-secondary);
+    transition: transform 0.2s;
+}
+
+.file-upload-btn:hover {
+    transform: scale(1.1);
+    color: var(--accent-primary);
 }
 
 .message-input {
     flex: 1;
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    color: white;
-    padding: 12px;
+    color: var(--text-primary);
+    padding: 12px 16px;
     border-radius: 24px;
     font-size: 1rem;
     outline: none;
+    transition: all 0.2s;
 }
 
 .message-input:focus {
+    background: white;
     border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px hsla(var(--primary-hue), var(--primary-sat), var(--primary-light), 0.1);
 }
 
 .send-button {
     background: var(--accent-primary);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 24px;
     border-radius: 24px;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
+    transition: transform 0.1s;
+    box-shadow: var(--shadow-sm);
+}
+
+.send-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.send-button:active {
+    transform: translateY(1px);
 }
 
 /* Login Modal */
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: hsla(0, 0%, 0%, 0.4);
+    /* 背景を明るめに */
+    backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -391,38 +436,69 @@ body {
 }
 
 .modal-content {
-    background: var(--bg-secondary);
-    padding: 2rem;
+    background: white;
+    padding: 2.5rem;
     border-radius: var(--radius-xl);
     width: 90%;
     max-width: 400px;
     text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-content h2 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
 }
 
 .modal-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: none;
+    /* シンプルにするためラベルは隠してプレースホルダーで見せる */
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    color: white;
-    border-radius: 8px;
+    padding: 14px;
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    color: var(--text-primary);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    background: white;
+    border-color: var(--accent-primary);
+    outline: none;
 }
 
 .submit-button {
-    padding: 12px;
-    background: var(--accent-primary);
+    padding: 14px;
+    background: var(--accent-gradient);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.1s;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Responsive Design (Mobile) */
@@ -440,7 +516,9 @@ body {
         max-width: 300px;
         z-index: 200;
         transform: translateX(-100%);
-        box-shadow: var(--shadow-xl);
+        box-shadow: var(--shadow-lg);
+        background: white;
+        /* モバイルメニューは白背景 */
     }
 
     .sidebar.active {
@@ -453,7 +531,6 @@ body {
 
     .user-badge {
         display: none;
-        /* 名前はスペース節約のため非表示 */
     }
 
     .nav-button {
@@ -466,7 +543,6 @@ body {
 
     .message-content {
         font-size: 16px;
-        /* モバイルでの読みやすさ */
         padding: 12px 16px;
     }
 
