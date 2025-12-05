@@ -25,66 +25,37 @@
             </form>
         </div>
     </div>
+    <div class="online-users" id="onlineUsers">
+        <!-- Users will be populated by JavaScript -->
+    </div>
+    </aside>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <h1>社内チャット</h1>
-                <div class="user-info">
-                    <a href="https://script.google.com/macros/s/AKfycbyGXf1lEV30290VM1wfZ15wBXHtzEmfaes9oRI_9VUqeQt6sBQb8we0HhukxJcl5iMR-w/exec" target="_blank" class="nav-button"
-                        title="勤怠管理アプリへ">
-                        📋 勤怠管理
-                    </a>
-                    <div class="user-badge">
-                        <span class="user-name" id="currentUserName">ゲスト</span>
-                    </div>
-                </div>
+    <!-- Chat Area -->
+    <main class="chat-area">
+        <div class="messages-container" id="messagesContainer">
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-state-icon">💬</div>
+                <div class="empty-state-text">まだメッセージがありません<br>最初のメッセージを送信してみましょう!</div>
             </div>
-        </header>
-
-        <!-- Chat Container -->
-        <div class="chat-container">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <!-- Search Box -->
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="メッセージを検索..." class="search-input">
-                </div>
-
-                <h2>オンラインユーザー</h2>
-                <div class="online-users" id="onlineUsers">
-                    <!-- Users will be populated by JavaScript -->
-                </div>
-            </aside>
-
-            <!-- Chat Area -->
-            <main class="chat-area">
-                <div class="messages-container" id="messagesContainer">
-                    <!-- Empty State -->
-                    <div class="empty-state" id="emptyState">
-                        <div class="empty-state-icon">💬</div>
-                        <div class="empty-state-text">まだメッセージがありません<br>最初のメッセージを送信してみましょう!</div>
-                    </div>
-                    <!-- Messages will be populated by JavaScript -->
-                </div>
-
-                <!-- Input Area -->
-                <div class="input-area">
-                    <form id="messageForm" class="input-form">
-                        <label for="fileInput" class="file-upload-btn" title="ファイルを送信">
-                            📎
-                        </label>
-                        <input type="file" id="fileInput" hidden>
-
-                        <input type="text" id="messageInput" class="message-input" placeholder="メッセージを入力..." required
-                            autocomplete="off" maxlength="500">
-                        <button type="submit" class="send-button">送信</button>
-                    </form>
-                </div>
-            </main>
+            <!-- Messages will be populated by JavaScript -->
         </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <form id="messageForm" class="input-form">
+                <label for="fileInput" class="file-upload-btn" title="ファイルを送信">
+                    📎
+                </label>
+                <input type="file" id="fileInput" hidden>
+
+                <input type="text" id="messageInput" class="message-input" placeholder="メッセージを入力..." required
+                    autocomplete="off" maxlength="500">
+                <button type="submit" class="send-button">送信</button>
+            </form>
+        </div>
+    </main>
+    </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
