@@ -67,8 +67,8 @@ class ChatApp {
             Notification.requestPermission();
         }
 
-        // ユーザーがログイン済みかチェック (セッションストレージを使用)
-        const savedUser = sessionStorage.getItem('chatAppUser');
+        // ユーザーがログイン済みかチェック (ローカルストレージを使用)
+        const savedUser = localStorage.getItem('chatAppUser');
         if (savedUser) {
             this.login(savedUser);
         }
@@ -119,7 +119,7 @@ class ChatApp {
 
     login(username) {
         this.currentUser = username;
-        sessionStorage.setItem('chatAppUser', username);
+        localStorage.setItem('chatAppUser', username);
 
         // サーバーに参加通知
         this.socket.emit('join', username);
